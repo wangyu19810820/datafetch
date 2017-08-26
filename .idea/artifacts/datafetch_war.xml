@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="datafetch:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="datafetch.war">
+      <element id="artifact" artifact-name="datafetch:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- classPathEntry:数据库的JDBC驱动,换成你自己的驱动位置 -->  
+	<classPathEntry location="C:\Users\admin\.m2\repository\mysql\mysql-connector-java\5.1.36\mysql-connector-java-5.1.36.jar" />
+
+	<context id="generatorTables" targetRuntime="MyBatis3">
+
+		<!--<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">-->
+			<!--<property name="fileName" value="mybatis-config.xml"/>-->
+			<!--<property name="targetPackage" value="/"/>-->
+			<!--<property name="targetProject" value="src/main/resources"/>-->
+		<!--</plugin>-->
+		
+		<!-- 此处是将Example改名为Criteria 当然 想改成什么都行 -->
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example"/>
+			<property name="replaceString" value="Criteria"/>
+		</plugin>
+
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+		<!-- commentGenerator 去除自动生成的注释  -->
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<!-- jdbcConnection是指定的jdbc的连接信息； -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		connectionURL="jdbc:mysql://127.0.0.1:3306/center_purch_mgr_bg" userId="root"
+		password="1111">
+		</jdbcConnection>
+
+			<!--
+			默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer true，
+			把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal
+			-->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- javaModelGenerator是模型的生成信息，这里将指定这些Java model类的生成路径； -->
+		<javaModelGenerator targetPackage="service.mybatis.model" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- sqlMapGenerator是mybatis 的sqlMapper XML文件的生成信息，包括生成路径等； -->
+		<sqlMapGenerator targetPackage="service.mybatis.mapper"
+		targetProject="src/main/java">
+		<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- javaClientGenerator是应用接口的生成信息； -->
+		<javaClientGenerator type="XMLMAPPER"
+		targetPackage="service.mybatis.dao" targetProject="src/main/java">
+		<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!--<table tableName="sys_log" domainObjectName="SysLog"></table>-->
+		<table tableName="task_download_fail_file" domainObjectName="TaskDownloadFailFile"></table>
+
+	</context>
+</generatorConfiguration>  

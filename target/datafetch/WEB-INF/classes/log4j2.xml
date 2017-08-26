@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="5">
+
+    <properties>
+        <property name="LOG_HOME">/log</property>
+    </properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Filters>
+                <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </Console>
+
+        <File name="trace" fileName="${LOG_HOME}/trace.log" append="false">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+
+        <File name="info" fileName="${LOG_HOME}/info.log" append="false">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </File>
+
+        <RollingFile name="roll_remote" fileName="${LOG_HOME}/remote.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/remote-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="roll_mybatis" fileName="${LOG_HOME}/mybatis.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/mybatis-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+        </RollingFile>
+
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="info"/>
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="trace"/>
+        </Root>
+
+        <logger name="tasks" level="trace" additivity="true">
+            <AppenderRef ref="roll_remote"/>
+        </logger>
+
+        <logger name="service.mybatis" level="trace" additivity="true">
+            <AppenderRef ref="roll_mybatis"/>
+        </logger>
+
+    </Loggers>
+
+</Configuration>
