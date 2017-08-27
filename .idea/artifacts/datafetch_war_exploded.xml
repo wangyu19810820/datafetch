@@ -43,6 +43,7 @@
           <element id="library" level="project" name="Maven: com.squareup.okhttp3:okhttp:3.8.1" />
           <element id="library" level="project" name="Maven: com.squareup.okio:okio:1.13.0" />
           <element id="library" level="project" name="Maven: com.squareup.retrofit2:retrofit:2.3.0" />
+          <element id="library" level="project" name="Maven: com.squareup.retrofit2:converter-gson:2.3.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
