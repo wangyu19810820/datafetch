@@ -6,13 +6,13 @@ import util.TaskHandleResult;
 /**
  * Created by admin on 2017/8/26.
  */
-public class ProjectHandle implements TaskHandle<String> {
+public class ProjectHandle implements TaskHandle<ProjectResponseModel> {
 
     @Override
-    public TaskHandleResult handle(String o) {
+    public TaskHandleResult handle(ProjectResponseModel o) {
         System.out.println(o);
-        Integer i = Integer.parseInt(o);
-        if (i >= 5) {
+
+        if (o.getNextpage() == 0) {
             return TaskHandleResult.NO_MORE_DATA;
         } else {
             return TaskHandleResult.HAS_MORE_DATA;

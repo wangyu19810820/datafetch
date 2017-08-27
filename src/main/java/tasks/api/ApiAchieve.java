@@ -4,8 +4,8 @@ import exception.RequestException;
 import retrofit2.Call;
 import retrofit2.Response;
 import util.Achieve;
-import util.RequestUtil;
-import util.ResponseModel;
+import tasks.RequestUtil;
+import tasks.model.ResponseModel;
 
 /**
  * Created by admin on 2017/8/26.
@@ -15,7 +15,7 @@ public class ApiAchieve implements Achieve {
 
     @Override
     public ApiResponseModel achieve() {
-        Call<ApiResponseModel> call = apiRequest.getToken("HLBH8171", "hsnn123", "20170703210700");
+        Call<ApiResponseModel> call = apiRequest.getApi("HLBH8171", "hsnn123", "20170703210700");
         try {
             Response<ApiResponseModel> response = call.execute();
             if (response.isSuccessful()

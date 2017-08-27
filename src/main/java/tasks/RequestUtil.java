@@ -1,7 +1,8 @@
-package util;
+package tasks;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 //import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
@@ -14,7 +15,7 @@ public class RequestUtil {
         retrofit = new Retrofit.Builder()
 //                .baseUrl("http://124.115.170.195:8008/")
                 .baseUrl("http://192.168.1.2:9006/api/yldata/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }
 

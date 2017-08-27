@@ -1,11 +1,12 @@
 package tasks.token;
 
+import com.google.gson.Gson;
 import exception.RequestException;
 import retrofit2.Call;
 import retrofit2.Response;
 import util.Achieve;
-import util.RequestUtil;
-import util.ResponseModel;
+import tasks.RequestUtil;
+import tasks.model.ResponseModel;
 
 /**
  * Created by admin on 2017/8/26.
@@ -15,14 +16,12 @@ public class TokenAchieve implements Achieve {
 
     @Override
     public TokenResponseModel achieve() {
-        Call<TokenResponseModel> call = tokenRequest.getToken("HLBH8171", "hsnn123", "20170703210700");
+        Call<String> call = tokenRequest.getToken("HLBH8171", "hsnn123", "20170703210700");
         try {
-            Response<TokenResponseModel> response = call.execute();
-            if (response.isSuccessful()
-                    && response.body() != null
-                    && response.body().getResult() == ResponseModel.RESPONSE_SUC) {
-                System.out.println(response.body());
-                return response.body();
+            Response<String> response = call.execute();
+            if (response.isSuccessful()) {
+                TokenResponseModel model = new Gson().fromJson(response.body(), TokenResponseModel.class);
+                return model;
             } else {
                 throw new RequestException("获取Token数据异常");
             }

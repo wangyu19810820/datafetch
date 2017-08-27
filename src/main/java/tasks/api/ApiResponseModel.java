@@ -1,6 +1,6 @@
 package tasks.api;
 
-import util.ResponseModel;
+import tasks.model.ResponseModel;
 
 import java.util.List;
 

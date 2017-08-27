@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 public interface ApiRequest {
 
     @GET("getapilist")
-    Call<ApiResponseModel> getToken(
+    Call<ApiResponseModel> getApi(
             @Query("userid") String username,
             @Query("password") String password,
             @Query("transtime") String transtime);

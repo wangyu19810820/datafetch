@@ -34,7 +34,7 @@ public class TaskLoader implements ApplicationContextAware {
 
         List<Task> list = new ArrayList<>();
         list.add(getTokenTask);
-        list.add(getApiTask);
+//        list.add(getApiTask);
         list.add(getProjTask);
         return list;
     }

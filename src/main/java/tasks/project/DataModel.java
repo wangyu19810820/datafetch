@@ -1,16 +1,14 @@
-package util;
+package tasks.project;
 
 /**
  * 接口返回的数据模型
  * Created by admin on 2017/5/31.
  */
-public class ResponseModel {
-    public static int RESPONSE_FAIL = 0;
-    public static int RESPONSE_SUC = 1;
-
+public class DataModel {
     protected int result;
     protected String errorcode;
     protected String message;
+    protected Object data;
     protected Object attach;
     protected int pageindex;
     protected int nextpage;
@@ -39,6 +37,14 @@ public class ResponseModel {
         this.message = message;
     }
 
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
     public int getPageindex() {
         return pageindex;
     }
@@ -65,10 +71,11 @@ public class ResponseModel {
 
     @Override
     public String toString() {
-        return "ResponseModel{" +
+        return "DataModel{" +
                 "result=" + result +
                 ", errorcode='" + errorcode + '\'' +
                 ", message='" + message + '\'' +
+                ", data=" + data +
                 ", attach=" + attach +
                 ", pageindex=" + pageindex +
                 ", nextpage=" + nextpage +

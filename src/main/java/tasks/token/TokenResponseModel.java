@@ -1,6 +1,6 @@
 package tasks.token;
 
-import util.ResponseModel;
+import tasks.model.ResponseModel;
 
 /**
  * Created by admin on 2017/8/27.

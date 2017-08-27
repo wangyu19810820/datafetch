@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 public interface TokenRequest {
 
     @GET("gettoken")
-    Call<TokenResponseModel> getToken(
+    Call<String> getToken(
             @Query("userid") String username,
             @Query("password") String password,
             @Query("transtime") String transtime);
