@@ -14,7 +14,7 @@ public class RequestUtil {
     static {
         retrofit = new Retrofit.Builder()
 //                .baseUrl("http://124.115.170.195:8008/")
-                .baseUrl("http://192.168.1.2:9006/api/yldata/")
+                .baseUrl("http://192.168.1.2:9011/api/yldata/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
     }

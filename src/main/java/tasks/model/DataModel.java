@@ -1,4 +1,4 @@
-package tasks.project;
+package tasks.model;
 
 /**
  * 接口返回的数据模型

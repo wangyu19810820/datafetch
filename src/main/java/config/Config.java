@@ -19,11 +19,14 @@ import util.TaskLoader;
 //@Import(DBConfig.class)
 //@ImportResource({"classpath:task_list.xml"})
 
-//@ImportResource({"classpath:task_list.xml"})
+////@ImportResource({"classpath:task_list.xml"})
+//@PropertySource("classpath:db.properties")
+
+@ImportResource({"classpath:spring-mybatis.xml"})
 @PropertySource("classpath:db.properties")
 public class Config {
-    private WebApplicationContext applicationContext;
 
+    private WebApplicationContext applicationContext;
 
     /**
      * 任务计划执行类

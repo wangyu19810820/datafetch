@@ -4,9 +4,8 @@ import com.google.gson.Gson;
 import exception.RequestException;
 import retrofit2.Call;
 import retrofit2.Response;
-import util.Achieve;
 import tasks.RequestUtil;
-import tasks.model.ResponseModel;
+import util.Achieve;
 
 /**
  * Created by admin on 2017/8/26.
@@ -16,7 +15,7 @@ public class TokenAchieve implements Achieve {
 
     @Override
     public TokenResponseModel achieve() {
-        Call<String> call = tokenRequest.getToken("HLBH8171", "hsnn123", "20170703210700");
+        Call<String> call = tokenRequest.getToken("NVQJ9143", "1qaz@WSX", "20170703210700");
         try {
             Response<String> response = call.execute();
             if (response.isSuccessful()) {

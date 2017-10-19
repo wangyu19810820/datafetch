@@ -1,13 +1,20 @@
 package config;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
@@ -15,12 +22,13 @@ import javax.sql.DataSource;
  * Created by admin on 2017/6/1.
  */
 @Configuration
-@ComponentScan(basePackages = "service.jdbc")
 @PropertySource("classpath:db.properties")
-public class DBConfig {
+@ComponentScan(basePackages = "database")
+@MapperScan("database.mapper")
+public class DBConfig implements EnvironmentAware {
 
     @Autowired
-    Environment env;
+    private Environment env;
 
 //    @Bean
 //    public DataSource dataSource() throws Exception {
@@ -39,16 +47,51 @@ public class DBConfig {
 //    }
 
     @Bean
-    public DataSource dataSource() throws Exception {
+    public DataSource dataSource()  {
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName(env.getProperty("db.driver.class"));
         ds.setUrl(env.getProperty("db.url"));
         ds.setUsername(env.getProperty("db.username"));
         ds.setPassword(env.getProperty("db.password"));
-        ds.setInitialSize(env.getProperty("db.proxool.initialSize",Integer.class, 1));
-        ds.setMaxActive(env.getProperty("db.proxool.maxActive", Integer.class, 5));
+//        ds.setInitialSize(env.getProperty("db.proxool.initialSize",Integer.class, 1));
+//        ds.setMaxActive(env.getProperty("db.proxool.maxActive", Integer.class, 5));
         return ds;
     }
+
+//    @Bean
+//    public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
+//        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+//        factoryBean.setDataSource(dataSource());
+//        factoryBean.setMapperLocations(new Resource[]{new ClassPathResource("database/mapper/TskTokenMapper.xml")});
+//        return factoryBean;
+//    }
+//
+//    @Bean
+//    public MapperScannerConfigurer mapperScannerConfigurer() {
+//        MapperScannerConfigurer configurer = new MapperScannerConfigurer();
+//        configurer.setBasePackage("database.mapper");
+////        configurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
+//        return configurer;
+//    }
+
+    @Bean
+    public DataSourceTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
+    }
+
+    @Bean
+    public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
+        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setTypeAliasesPackage("database.mapper");
+        return sessionFactory;
+    }
+
+    @Override
+    public void setEnvironment(Environment environment) {
+        this.env = environment;
+    }
+
 
 //    @Bean
 //    public JdbcTemplate jdbcTemplate(DataSource dataSource) {

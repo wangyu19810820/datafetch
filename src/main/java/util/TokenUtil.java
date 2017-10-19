@@ -24,7 +24,7 @@ public class TokenUtil {
 //            // 从数据库中取token
 //            tokenModel = repository.getTokenModel();
 //        }
-        return token;
+        return "16844160-5f6c-476d-a677-cdfa3929937f";
     }
 
     public synchronized void setToken(String token, Date date) {
