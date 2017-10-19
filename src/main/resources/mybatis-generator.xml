@@ -10,7 +10,7 @@
 	<context id="generatorTables" targetRuntime="MyBatis3">
 
 		<!--<plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">-->
-		<!--<property name="fileName" value="mybatis-config.xml"/>-->
+		<!--<property name="fileName" value="mybatis-com.hsnn.datafetch.config.xml"/>-->
 		<!--<property name="targetPackage" value="/"/>-->
 		<!--<property name="targetProject" value="src/main/resources"/>-->
 		<!--</plugin>-->
@@ -45,20 +45,20 @@
 		</javaTypeResolver>
 
 		<!-- javaModelGenerator是模型的生成信息，这里将指定这些Java model类的生成路径； -->
-		<javaModelGenerator targetPackage="database.model" targetProject="src/main/java">
+		<javaModelGenerator targetPackage="com.hsnn.datafetch.database.model" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<!-- sqlMapGenerator是mybatis 的sqlMapper XML文件的生成信息，包括生成路径等； -->
-		<sqlMapGenerator targetPackage="database.mapper"
+		<sqlMapGenerator targetPackage="com.hsnn.datafetch.database.mapper"
 						 targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<!-- javaClientGenerator是应用接口的生成信息； -->
 		<javaClientGenerator type="XMLMAPPER"
-                             targetPackage="database.dao" targetProject="src/main/java">
+                             targetPackage="com.hsnn.datafetch.database.dao" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 

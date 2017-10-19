@@ -13,7 +13,7 @@
  	http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
  	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
-    <context:component-scan base-package="database"/>
+    <context:component-scan base-package="com.hsnn.datafetch"/>
     <context:property-placeholder location="classpath:db.properties"/>
 
     <!-- 数据库链接配置 -->
@@ -65,14 +65,14 @@
             </array>
         </property>
         <property name="configLocation" value="classpath:mybatis-configuration.xml"></property>
-        <property name="mapperLocations" value="classpath*:database/mapper/*.xml"></property>
+        <property name="mapperLocations" value="classpath*:com/hsnn/datafetch/database/mapper/*.xml"></property>
     </bean>
 
     <context:annotation-config />
     <tx:annotation-driven />
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="database.dao" />
+        <property name="basePackage" value="com.hsnn.datafetch.database.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
