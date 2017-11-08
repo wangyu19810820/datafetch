@@ -34,13 +34,12 @@ public class BidInfoAchieve implements Achieve {
         } catch (Exception e) {
 
         }
-        QueryRequestModel queryRequestModel = new QueryRequestModel(
-                startTime, new Date(), page);
+        QueryRequestModel queryRequestModel = new QueryRequestModel(startTime, new Date(), page);
         Gson gson = new Gson();
         String param = gson.toJson(queryRequestModel.toMap());
 
-        Call<String> call = bidInfoRequest.getProject("20170827210700",
-                TokenUtil.getInstance().getToken(), param);
+        String token = TokenUtil.getInstance().getToken();
+        Call<String> call = bidInfoRequest.getProject("20170827210700", token, param);
         System.out.println(param);
         try {
             Response<String> response = call.execute();
